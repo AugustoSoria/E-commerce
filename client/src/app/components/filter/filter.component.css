@@ -1,0 +1,49 @@
+section {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2em;
+}
+
+section div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.left-section {
+    width: 25%;
+}
+
+select {
+    height: 30px;
+    border: 1px solid #8080807d;
+    background-color: white;
+    width: 70px;
+    color: #424242;
+}
+
+.right-section {
+    width: 20%;
+}
+
+.right-section select {
+    width: 100px;
+}
+
+@media screen and (max-width: 430px) {
+    section div {
+        flex-direction: column;
+        width: 150px;
+        justify-content: flex-start;
+    }
+
+    section div h3{
+        margin: 0;
+        margin-bottom: 1em;
+    }
+
+    select {
+        width: 120px;
+        margin-bottom: 1em;
+    }
+}

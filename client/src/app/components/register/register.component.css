@@ -1,0 +1,52 @@
+.container {
+    background: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5) ), 
+        url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") 
+        right;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    width: 45%;
+    background-color: white;
+    padding: 1em;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form input {
+    height: 35px;
+    width: 260px;
+    margin: 10px 10px 0px 0px;
+}
+
+div.errors p {
+    color: red;
+    margin: 5px 0;
+}
+
+form p {
+    font-size: 14px;
+}
+
+form button {
+    height: 35px;
+    border: none;
+    width: 150px;
+    cursor: pointer;
+    color: white;
+    background: #028081;
+}
+
+@media screen and (max-width: 430px) {
+    section {
+        width: 85%
+    }
+}

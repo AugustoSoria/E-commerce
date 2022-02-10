@@ -1,0 +1,33 @@
+footer {
+    display: flex;
+    padding: 0 1em;
+    background-color: antiquewhite;
+}
+
+section {
+    flex: 1;
+    margin: 0 5px;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: auto auto;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: .5em 0;
+}
+
+.right-section p {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 430px) {
+    footer {
+        flex-direction: column;
+        margin-bottom: 1em;
+    }
+}

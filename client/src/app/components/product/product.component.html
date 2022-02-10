@@ -1,0 +1,35 @@
+<section style="display: flex;">
+    <div class="img-section">
+        <img src={{product.img}} alt="">
+    </div>
+    <div style="flex: 1;">
+        <h2>{{product.title}}</h2>
+        <p>{{product.des}}</p>
+        <h3>$ {{product.price}}</h3>
+        <div style="display: flex; align-items: center; margin-bottom: 1em;">
+            <div class="select-color">
+                <h5>Color: {{product.color}}</h5>
+            </div>
+            <h5>Size: </h5>
+            <select name="size" (change)="handleSize($event)">
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+        </div>
+        <div class="amount-add-btn" style="display: flex; align-items: center;">
+            <div style="display: flex; align-items: center; margin-right: 2em;">
+                <button (click)="amount == 0? 0 : amount = amount - 1">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13H5v-2h14v2z"/></svg>
+                </button>
+                <h4>{{amount}}</h4>
+                <button (click)="amount = amount + 1">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                </button>
+            </div>
+            <button class="btn-add" (click)="addToCartFunction()">ADD TO CART</button>
+        </div>
+    </div>
+</section>

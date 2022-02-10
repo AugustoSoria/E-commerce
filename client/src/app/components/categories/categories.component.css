@@ -1,0 +1,51 @@
+.categories-section {
+    display: flex;
+    justify-content: center;
+    margin: 2em;
+    height: 456px;
+    overflow: hidden;
+}
+
+.category {
+    margin: 0 1em;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category img{
+    width: 20em;
+}
+
+.category h3{
+    position: absolute;
+    font-size: 1.6em;
+    color: wheat;
+    margin-top: 4em;
+}
+
+button{
+    position: absolute;
+    top: 63%;
+    height: 2.2em;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 430px) {
+    .categories-section {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .category {
+        overflow: hidden;
+        height: 300px;
+        margin-bottom: 1em;
+    }
+
+    button {
+        top: 70%
+    }
+}

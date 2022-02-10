@@ -1,0 +1,34 @@
+<div class="slider-container">
+    <button class="btn-prev" (click)="slide('left')" ng>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z"/></svg>
+    </button>
+    <div class="slider" [ngStyle]="{'transform': 'translateX(' + slideIndex + 'vw)'}">
+        <div class="slide" [ngStyle]="{'background': 'coral'}">
+            <img src="../../../assets/images/img-carousel.png" alt="">
+            <div class="info">
+                <h2>SUMMER SALE</h2>
+                <p>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS</p>
+            </div>
+        </div>
+    
+        <div class="slide" [ngStyle]="{'background': 'green'}">
+            <img src="../../../assets/images/img-carousel.png" alt="">
+            <div class="info">
+                <h2>SUMMER SALE</h2>
+                <p>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS</p>
+            </div>
+        </div>
+    
+        <div class="slide" [ngStyle]="{'background': 'red'}">
+        <img src="../../../assets/images/img-carousel.png" alt="">
+            <div class="info">
+                <h2>SUMMER SALE</h2>
+                <p>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-next" (click)="slide('right')">
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12"/></g></svg>
+    </button>
+</div>

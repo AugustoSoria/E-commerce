@@ -1,0 +1,45 @@
+<div class="container">
+    <section>
+        <h2>SIGN IN</h2>
+        <form method="post" [formGroup]="fg" (ngSubmit)="handleClick()">
+            <input 
+                name="email" 
+                formControlName="email"
+                type="text" 
+                placeholder="admin@admin.com" 
+                required
+                pattern='\w+@[a-z]+\.[a-z]{2,3}(\.\w{2,3})?'
+            >
+            <div *ngIf="fg.controls['email'].errors && fg.controls['email'].dirty" class="error">
+                <p *ngIf="fg.controls['email'].errors['required']" class="error">Required camp</p>
+                <p *ngIf="fg.controls['email'].errors['pattern']" class="error">{{fg.controls['email'].errors | json}}</p>
+            </div>
+            <input
+                name="password" 
+                type="password"
+                formControlName="password"
+                placeholder="12345" 
+                required
+                minlength="5"
+            >
+            <div *ngIf="fg.controls['password'].errors && fg.controls['password'].dirty" class="error">
+                <p *ngIf="fg.controls['password'].errors['required']" class="error">Required camp</p>
+                <p *ngIf="fg.controls['password'].errors['minlength']" class="error">The password must have at least five characteres</p>
+            </div>
+            <p *ngIf="serverErrors | async" class="error">{{serverErrors | async}}</p>
+            <div style="display: flex;align-items: center;">
+                <button 
+                    type="submit" 
+                    [disabled]="
+                        (fetching | async).isFetching || 
+                        fg.invalid || 
+                        (serverErrors | async)"
+                    >LOGIN
+                </button>
+                <div *ngIf="(fetching | async).isFetching" class="spinner"></div>
+            </div>
+        </form>
+        <a href="/login">DO NOT YOU REMEMBER THE PASSWORD?</a>
+        <a href="/register">CREATE A NEW ACCOUNT</a>
+    </section>
+</div>

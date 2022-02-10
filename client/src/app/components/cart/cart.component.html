@@ -1,0 +1,57 @@
+<section>
+    <h2>YOUR BAG</h2>
+    <div class="top">
+        <button class="continue-shop-btn">
+            <a href="/">CONTINUE SHOPPING</a>
+        </button>
+        <div class="middle">
+            <h4>Shopping Bag({{productCart.length}})</h4>
+        </div>
+        <button class="check-btn">CHECKOUT NOW</button>
+    </div>
+    <div class="buttom">
+        <ng-template #noItems>
+            <h1 class="noItemsTemplate">No items have been added yet</h1>
+        </ng-template>
+        <div class="products-sect" *ngIf="productCart.length > 0; else noItems">
+            <div class="product-sect" *ngFor="let p of productCart; index as i">
+                <button title="delete product" class="delete-product" (click)="deleteProduct(i)">X</button>
+                <div class="feat-section">
+                    <img [src]="p.img" alt="">
+                    <div class="feat">
+                        <h6><b>Product: </b>{{p.title}}</h6>
+                        <h6><b>Color: </b>{{p.color}}</h6>
+                        <h6><b>Size: </b>{{p.size}}</h6>
+                        <h6><b>Amount: </b>{{p.amount}}</h6>
+                        <h6><b>Price: </b>{{p.price}}</h6>
+                        <h6><b>ID: </b>{{p.id}}</h6>
+                    </div>
+                    <div class="amount">
+                        <h4>Total: $ {{(p.price * p.amount).toFixed(1)}}</h4>
+                    </div>
+                </div>
+                <hr style="color: rgba(128, 128, 128, 0.5);">
+            </div>
+        </div>
+        <div class="summary">
+            <h3>ORDER SUMMARY</h3>
+            <div>
+                <h5>Subtotal</h5>
+                <h4>$ {{(subtotal).toFixed(1)}}</h4>
+            </div>
+            <div>
+                <h5>Estimated Shipping</h5>
+                <h4>$5.90</h4>
+            </div>
+            <div>
+                <h5>Shipping Discount</h5>
+                <h4>$-5.90</h4>
+            </div>
+            <div>
+                <h5>Total</h5>
+                <h4>$ {{(subtotal).toFixed(1)}}</h4>
+            </div>
+            <button>CHECKOUT NOW</button>
+        </div>
+    </div>
+</section>

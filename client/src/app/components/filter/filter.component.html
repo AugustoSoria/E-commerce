@@ -1,0 +1,21 @@
+<section>
+    <div class="left-section">
+        <h3>Filter Products:</h3>
+        <select name="color" (change)="handleChange($event)">
+            <option disabled selected> Color </option>
+            <option *ngFor="let c of availableColors" value="{{c}}">{{c}}</option>
+        </select>
+        <Select name="size" (change)="handleChange($event)">
+            <option disabled selected> Size </option>
+            <option *ngFor="let s of availableSizes" value="{{s}}">{{s}}</option>
+        </Select>
+    </div>
+    <div class="right-section">
+        <h3>Sort Products:</h3>
+        <select name="sort" (change)="handleChange($event)">
+            <option value="newest" selected>Newest</option>
+            <option value="price-asc">Price (asc)</option>
+            <option value="price-desc">Price (desc)</option>
+        </select>
+    </div>
+</section>

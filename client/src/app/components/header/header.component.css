@@ -1,0 +1,114 @@
+.advertisement {
+    background-color: #028081;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.advertisement p {
+    margin: 0;
+}
+
+.title-sm {
+    display: none
+}
+
+a.title, a.title-sm{
+    text-decoration: none;
+    font-size: 1.5em;
+    padding: 0.7em;
+    color: black;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em;
+}
+
+.input-section {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.input-section form button {
+    width: 35px;
+    height: 24px;
+    border: none;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.5s ease;
+}
+
+.input-section form button:hover {
+    background-color: #028081;
+}
+
+.input-section input {
+    border: none;
+}
+
+.input-section input:focus {
+    outline: 0;
+}
+
+.sing-section {
+    display: flex;
+    width: 11em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sing-section button {
+    border: none;
+    background-color: white;
+}
+
+.sing-section a {
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    cursor: pointer;
+}
+
+.cart-section {
+    position: relative;
+}
+
+.cart-amount {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    top: -7px;
+    right: -7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 430px) {
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .input-section input {
+        width: 135px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .title-sm {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}

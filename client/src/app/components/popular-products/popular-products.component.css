@@ -1,0 +1,61 @@
+.popular-prod {
+    width: 300px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: .5em;
+    background-color: #f5fbfd;
+    overflow: hidden;
+}
+
+.shadow {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.shadow:hover {
+    opacity: 1;
+}
+
+.circle {
+    width: 70%;
+    position: absolute;
+    height: 60%;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.popular-prod img {
+    width: 100%;
+    z-index: 1;
+}
+
+.icon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    position: absolute;
+    margin: .5em;
+    z-index: 1;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
