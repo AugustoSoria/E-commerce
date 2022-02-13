@@ -7,11 +7,9 @@ let uuid = require('uuid').v4;
 const faker = require('faker');
 
 router.post('/register', (req, res) => {
-    connection.query("SELECT * FROM users WHERE email = ?", [req.body.email], (error, result) => { //cambiar a id
+    connection.query("SELECT * FROM users WHERE email = ?", [req.body.email], (error, result) => {
         if(error) return res.status(500).send('Internal Server Error')
-        if(result.length > 0) {
-            return res.status(400).send('Email in use')
-        }
+        if(result.length > 0) return res.status(400).send('Email in use')
         else {
             let data = {}
             data.id = uuid()
