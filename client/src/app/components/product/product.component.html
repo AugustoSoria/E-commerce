@@ -11,7 +11,7 @@
                 <h5>Color: {{product.color}}</h5>
             </div>
             <h5>Size: </h5>
-            <select name="size" (change)="handleSize($event)">
+            <select name="size" [(ngModel)]="size">
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>

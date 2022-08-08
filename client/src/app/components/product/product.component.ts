@@ -12,6 +12,7 @@ import { selectProduct } from 'src/app/state/selectors/app.selectors';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  storeProducts: ProductsCartModel[] = []
   product!: ProductModel; 
   productsToAdd: ProductsCartModel[] = [] 
   amount: number = 1
@@ -23,6 +24,7 @@ export class ProductComponent implements OnInit {
     private store: Store<AppState>, 
     private tokenService: TokenService
   ){
+    this.storeProducts =  JSON.parse(localStorage.getItem('poductsCart') || '{}');
     this.tokenService.getUserToken().subscribe(t => this.userToken = t)
   }
 
@@ -32,13 +34,9 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  handleSize(e: any) {
-    this.size = e.target.value
-  }
-
   addToCartFunction() {
     if(this.userToken.userToken) {
-      this.productsToAdd.push({
+      this.productsToAdd = this.storeProducts.concat({
         ...this.product,
         amount: this.amount, 
         added_date: new Date(), 
@@ -46,8 +44,10 @@ export class ProductComponent implements OnInit {
       })
       
       this.store.dispatch(addToCart(
-        { productsCart: [...this.productsToAdd] }
+        { productsCart: this.productsToAdd }
       ))
+
+      localStorage.setItem('poductsCart', JSON.stringify(this.productsToAdd))
     } else {
       alert('You need to be registered')
     }
