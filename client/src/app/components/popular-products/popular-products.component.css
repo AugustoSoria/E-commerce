@@ -1,4 +1,13 @@
-.popular-prod {
+.popularProductsComponent {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    flex-direction: column; 
+    position: relative;
+    min-height: 366px;
+}
+
+.popularProds {
     width: 300px;
     height: 350px;
     display: flex;
@@ -36,7 +45,7 @@
     z-index: 0;
 }
 
-.popular-prod img {
+.popularProds img {
     width: 100%;
     z-index: 1;
 }
@@ -58,4 +67,15 @@
 
 .icon:hover {
     transform: scale(1.1);
+}
+
+.spinnerContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    align-items: center;
+    background-color: white;
 }

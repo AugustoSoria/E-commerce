@@ -26,57 +26,62 @@ export class FilterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.selectProductsByCategory()
+    this.productsByCategory$ = this.selectProductsByCategory()
 
-    this.productsByCategory$.subscribe(p => 
+    this.productsByCategory$.subscribe((p: ProductModel[]) => 
       this.store.dispatch(filterProductsList(
         { productList: p }
       ))
     )
 
-    this.productsByCategory$.pipe(
-      map(pr => pr.map((p: { color: string; }) => 
-        this.availableColors.indexOf(p.color) < 0  && 
-        this.availableColors.push(p.color)))
-    ).subscribe()
-
-    this.productsByCategory$.pipe(
-      map(pr => pr.map((p: { size: string; }) => 
-        this.availableSizes.indexOf(p.size) < 0  && 
-        this.availableSizes.push(p.size)))
-    ).subscribe()
+    this.productsByCategory$.forEach((pr: ProductModel[]) => {
+      pr.forEach((p: ProductModel) => {
+        this.availableColors.indexOf(p.color) < 0  && this.availableColors.push(p.color)
+        this.availableSizes.indexOf(p.size) < 0  && this.availableSizes.push(p.size)
+      })
+    })
   }
-
-  /*
-    if we try to sort the initial products we will get an empty array, because when we try to sort the products
-    filterQuery properties are All, so the conditional of the lines 67 and 69 are false and that does that the
-    filteredProducts array never gets products
-  */
 
   handleChange(e:any) {
     let filteredProducts: ProductModel[] = []
-    console.log(e.target.name, e.target.value)
-    console.log(this.filterQuery)
 
-    if(e.target.value === 'All') {
-      this.selectProductsByCategory()
-    } else {
-      console.log(this.filterQuery)
+    /* First depending of the filterQuery object, we filter the products */
+    /* 
+      If the filtereQuery object has an All value, we bring all the products from the select selectProductsByCategory
+      and we push all that products to filteredProducts Array
+    */
+    if(this.filterQuery.size == "All" && this.filterQuery.color == "All") {
+      this.selectProductsByCategory().forEach((pr: ProductModel[]) => {
+        pr.forEach(p => filteredProducts.push(p))
+      })
+    } 
 
-      this.productsByCategory$.pipe(
-        map(pr => pr.map((p: ProductModel) => {
-          this.filterQuery.size != "All" && p.size == this.filterQuery.size && filteredProducts.push(p)
-          // console.log(p.size, "== ", this.filterQuery.size)
-          this.filterQuery.color != "All" && p.color == this.filterQuery.color && filteredProducts.push(p)
-          // console.log(p.color, "== ", this.filterQuery.color)
-        }))
-      ).subscribe()
-      
-      console.log("filteredProducts 1", filteredProducts)
+    /* 
+      If the filtereQuery object has not an All value, we use the productsByCategory variable to filter the products
+      depending of the filterQuery Object
+    */
+    if(this.filterQuery.size != "All" && this.filterQuery.color != "All") {
+      this.productsByCategory$.forEach((pr: ProductModel[]) => {
+        pr.forEach(p => p.color == this.filterQuery.color && p.size == this.filterQuery.size && filteredProducts.push(p))
+      })
     }
 
-    console.log("filteredProducts 2", filteredProducts)
+    /* 
+      If the filtereQuery object has at least an All value, we use just one property of the filterQuery object
+    */
+    if(this.filterQuery.size != "All" && this.filterQuery.color == "All") {
+      this.productsByCategory$.forEach((pr: ProductModel[]) => {
+        pr.forEach(p => p.size == this.filterQuery.size && filteredProducts.push(p))
+      })
+    }
 
+    if(this.filterQuery.color != "All" && this.filterQuery.size == "All") {
+      this.productsByCategory$.forEach((pr: ProductModel[]) => {
+        pr.forEach(p => p.color == this.filterQuery.color && filteredProducts.push(p))
+      })
+    }
+
+    /* One time that we have the selected products, we are going to order them */
     if(e.target.value === 'price-desc') {
       filteredProducts.sort((a: any, b: any) => b.price - a.price)
     }
@@ -89,17 +94,16 @@ export class FilterComponent implements OnInit {
       filteredProducts.sort((a: any,b: any) => a.creation_date - b.creation_date)
     }
 
-    console.log("set filteredProducts ", [...new Set(filteredProducts)])
-
+    /* And like last step we dispatch the filterProductsList action so the popular-products component to have them */
     this.store.dispatch(filterProductsList(
       { productList: [...new Set(filteredProducts)] }
     ))
   }
 
   selectProductsByCategory() {
-    //tomamos todos los productos q sean parte de x categoria
-    this.productsByCategory$ = this.store.select(selectProductsList).pipe(
-      map(pr => pr.filter(p => p.categories.includes(this.category)))
-    ) //toma todo pero los filtra por categoria, asique es como si consumiera los filtered
+    // Get all the products of category like this.category
+    return this.store.select(selectProductsList).pipe(
+      map((pr: ProductModel[]) => pr.filter(p => p.categories.includes(this.category)))
+    )
   }
 }
