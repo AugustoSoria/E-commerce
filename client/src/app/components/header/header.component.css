@@ -26,13 +26,13 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1em;
 }
 
 .input-section {
     display: flex;
     border: 2px solid black;
     border-radius: 5px;
+    margin-left: 1em;
 }
 
 .input-section form button {
