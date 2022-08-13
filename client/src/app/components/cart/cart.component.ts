@@ -14,20 +14,19 @@ export class CartComponent implements OnInit {
   subtotal = 0
 
   constructor(private store:Store<AppState>) {
-    this.store.select(selectProductsCart).subscribe(p => this.productCart = p)
+    this.store.select(selectProductsCart).subscribe((p: ProductsCartModel[]) => this.productCart = p)
   }
 
   ngOnInit(): void {
-    let totalporproducto: number[] = []
+    let totalPerProduct: number[] = []
     this.productCart.map(p => {
-      totalporproducto.push(p.price * p.amount)
+      totalPerProduct.push(p.price * p.amount)
     })
-    this.subtotal = totalporproducto.reduce((acc,curr) => acc + curr, 0)
+    this.subtotal = totalPerProduct.reduce((acc,curr) => acc + curr, 0)
   }
 
   deleteProduct(index: number) {
-    let spliceProducts = [...this.productCart]
-    spliceProducts.splice(index, 1)
-    this.productCart = spliceProducts
+    this.productCart = this.productCart.filter((p, i) => i != index)
+    localStorage.setItem('poductsCart', JSON.stringify(this.productCart))
   }
 }
