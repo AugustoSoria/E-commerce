@@ -12,7 +12,7 @@ import { selectProduct } from 'src/app/state/selectors/app.selectors';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  storeProducts: ProductsCartModel[] = []
+  storeProducts: ProductsCartModel[] = [];
   product!: ProductModel; 
   productsToAdd: ProductsCartModel[] = [] 
   amount: number = 1
@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
     private store: Store<AppState>, 
     private tokenService: TokenService
   ){
-    this.storeProducts =  JSON.parse(localStorage.getItem('poductsCart') || '{}');
+    this.storeProducts =  JSON.parse(localStorage.getItem('poductsCart') || '[]');
     this.tokenService.getUserToken().subscribe(t => this.userToken = t)
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductModel, ProductsCartModel } from './models/product.interface';
 import { ApiService } from './services/api.service';
-import { addToCart, filterProductsList, loadProducts } from './state/actions/app.actions';
+import { addToCart, loadProducts } from './state/actions/app.actions';
 import { AppState } from './state/app.state';
 
 @Component({
@@ -13,7 +13,7 @@ import { AppState } from './state/app.state';
 export class AppComponent implements OnInit {
   title = 'e-commerce-app';
   products: ProductModel[] = []
-  storeProducts: ProductsCartModel[] = JSON.parse(localStorage.getItem('poductsCart') || '{}');
+  storeProducts: ProductsCartModel[] = JSON.parse(localStorage.getItem('poductsCart') || '[]');
 
   constructor(
     private store: Store<AppState>,
@@ -26,9 +26,6 @@ export class AppComponent implements OnInit {
         this.store.dispatch(loadProducts(
           { products: response }
         ))
-        // this.store.dispatch(filterProductsList(
-        //   { productList: response }
-        // ))
       })
 
       this.store.dispatch(addToCart(
