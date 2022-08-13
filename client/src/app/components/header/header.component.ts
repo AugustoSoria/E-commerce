@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ProductModel, ProductsCartModel } from 'src/app/models/product.interface';
+import { ProductsCartModel } from 'src/app/models/product.interface';
 import { TokenService } from 'src/app/services/token.service';
 import { AppState } from 'src/app/state/app.state';
 import { selectProductsCart } from 'src/app/state/selectors/app.selectors';
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenService,
     private router: Router
   ) {
-    this.store.select(selectProductsCart).subscribe(p => this.productsCart = p)
+    this.store.select(selectProductsCart).subscribe((p: ProductsCartModel[]) => this.productsCart = p)
     this.userToken$ = this.tokenService.getUserToken()
   }
 
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
 
   redirect(e: any) {
     let value = e.target['1'].value.toLowerCase().replace(' ', '-')
-    if(value === ('shirt-style' || 'loungewear-love' || 'light-jackets')) {
+    if(value === 'shirt-style' || value === 'loungewear-love' || value === 'light-jackets') {
       this.router.navigate([`/category/${value}`]);
     }
   }
