@@ -1,6 +1,6 @@
-<section class="popularProductsComponent">
+<section class="popularProductsComponent" >
     <div *ngIf="(filteredProducts$ | async); else loading">
-        <div style="display: flex; justify-content: center;" *ngIf="(filteredProducts$ | async)!.length > 0; else ProductsNotFound">
+        <div style="display: flex; justify-content: center; flex-wrap: wrap;" *ngIf="(filteredProducts$ | async)!.length > 0; else ProductsNotFound">
             <div class="popularProds" *ngFor="let p of filteredProducts$ | async">
                 <div class="circle"></div>
                 <img [src]="p.img">
